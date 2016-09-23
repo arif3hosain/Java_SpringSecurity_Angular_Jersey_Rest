@@ -1,0 +1,36 @@
+<div class="row col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+	<div class="panel panel-default">
+		<div class="panel-heading "><h5 style="text-align:right;">Login</h5></div>
+		<div class="panel-body">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="username" class="col-sm-3 control-label">Username</label>
+					<div class="col-sm-9">
+						<input id="username" ng-model="username" type="text" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="password" class="col-sm-3 control-label">Password</label>
+					<div class="col-sm-9">
+						<input id="password" ng-model="password" type="password" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-9">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" ng-model="rememberMe"> Remember me
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-9 col-sm-offset-3">
+						<input type="submit" value="Log In" class="btn btn-primary" ng-click="login()"/>
+						<a class="pull-right" href="#!/signup">Join today?</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
