@@ -1,4 +1,4 @@
-Java_SpringSecurity_Angular_Jersey_Rest
+Java Spring Security AngularJS & Jersey REST API
 ===========================
 
 An example AngularJS Application that uses a Spring Security protected Jersey REST backend based on Hibernate/JPA.
