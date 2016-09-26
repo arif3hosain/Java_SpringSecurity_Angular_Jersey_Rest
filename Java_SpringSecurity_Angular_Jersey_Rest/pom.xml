@@ -21,8 +21,8 @@
 
 	<developers>
 		<developer>
-			<name>Philip Washington Sorst</name>
-			<url>https://sorst.net</url>
+			<name>Arif Hosain</name>
+			<url>https://bd.linkedin.com/in/arif-hosain-0861288b</url>
 		</developer>
 	</developers>
 
@@ -58,7 +58,7 @@
 	</build>
 	
 	<scm>
-		<developerConnection>scm:git:https://github.com/philipsorst/angular-rest-springsecurity.git</developerConnection>
+		<developerConnection>https://github.com/arif3hosain/Java_SpringSecurity_Angular_Jersey_Rest.git</developerConnection>
 	</scm>
 
 	<dependencies>
@@ -75,13 +75,24 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${version.org.springframework}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>7</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/ojdbc-7.jar</systemPath> <!-- must match file name -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${version.org.springframework}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.0.2</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.sun.jersey.contribs</groupId>
 			<artifactId>jersey-spring</artifactId>

@@ -40,15 +40,18 @@ public class DataBaseInitializer
 
 	public void initDataBase()
 	{
+		System.out.print(">>>>>>>>>>>>>>>>>>>"+1);
 		User userUser = new User("user", this.passwordEncoder.encode("user"));
 		userUser.addRole(Role.USER);
 		this.userDao.save(userUser);
+		System.out.print(">>>>>>>>>>>>>>>>>>>"+2);
 
 		User adminUser = new User("admin", this.passwordEncoder.encode("admin"));
 		adminUser.addRole(Role.USER);
 		adminUser.addRole(Role.ADMIN);
 		this.userDao.save(adminUser);
 
+		System.out.print(">>>>>>>>>>>>>>>>>>>"+1);
 		long timestamp = System.currentTimeMillis() - (1000 * 60 * 60 * 24);
 		for (int i = 0; i < 10; i++) {
 			NewsEntry newsEntry = new NewsEntry();

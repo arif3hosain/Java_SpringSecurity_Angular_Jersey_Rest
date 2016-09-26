@@ -39,7 +39,6 @@ public class UserResource
 	@Qualifier("authenticationManager")
 	private AuthenticationManager authManager;
 
-
 	/**
 	 * Retrieves the currently logged in user.
 	 * 
@@ -55,10 +54,8 @@ public class UserResource
 			throw new WebApplicationException(401);
 		}
 		UserDetails userDetails = (UserDetails) principal;
-
 		return new UserTransfer(userDetails.getUsername(), this.createRoleMap(userDetails));
 	}
-
 
 	/**
 	 * Authenticates a user and creates an authentication token.
