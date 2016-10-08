@@ -43,18 +43,18 @@ public class DataBaseInitializer
 
 	public void initDataBase()
 	{
-		System.out.print(">>>>>>>>>>>>>>>>>>>"+1);
-		User userUser = new User("user", this.passwordEncoder.encode("user"), "arif3hosain@gmail.com");
-		userUser.addRole(Role.USER);
-
-		this.userDao.save(userUser);
-		System.out.print(">>>>>>>>>>>>>>>>>>>"+2);
-
-		User adminUser = new User("admin", this.passwordEncoder.encode("admin"), "arif3hosain@gmail.com");
-		adminUser.addRole(Role.ADMIN);
-		this.userDao.save(adminUser);
-
-		Long l=new Long(5);
+//		System.out.print(">>>>>>>>>>>>>>>>>>>"+1);
+//		User userUser = new User("user", this.passwordEncoder.encode("user"), "arif3hosain@gmail.com");
+//		userUser.addRole(Role.USER);
+//
+//		this.userDao.save(userUser);
+//		System.out.print(">>>>>>>>>>>>>>>>>>>"+2);
+//
+//		User adminUser = new User("admin", this.passwordEncoder.encode("admin"), "arif3hosain@gmail.com");
+//		adminUser.addRole(Role.ADMIN);
+//		this.userDao.save(adminUser);
+//
+//		Long l=new Long(5);
 
 //		System.out.print(">>>>>>>>>>>>>>>>>>>Role..................."+l);
 //		UmsRoleMst umsRoleMst=new UmsRoleMst(l,"ROLE_ADMIN", "1");

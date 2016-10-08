@@ -16,13 +16,19 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 				templateUrl: 'partials/login.html',
 				controller: LoginController
 			});
-			;$routeProvider.when('/signup', {
+			$routeProvider.when('/signup', {
 				templateUrl: 'partials/signup.html',
 				controller: SignUpController
 			});
+
+			$routeProvider.when('/profile', {
+				templateUrl: 'partials/user_profile.html',
+				controller: UserProfile
+			});
 			
 			$routeProvider.otherwise({
-				templateUrl: 'partials/index.html',
+				templateUrl: 'partials/user_profile.html',
+//				templateUrl: 'partials/index.html',
 				controller: IndexController
 			});
 			
@@ -88,7 +94,6 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 			if ($rootScope.user.roles[role] === undefined) {
 				return false;
 			}
-			
 			return $rootScope.user.roles[role];
 		};
 		
@@ -167,6 +172,11 @@ function LoginPageController($scope, $location, NewsService) {
 		});
 	};
 };
+
+function UserProfile($scope, UserService){
+
+};
+
 function SignUpController($scope, $location, NewsService) {
 
 	$scope.newsEntry = new NewsService();
