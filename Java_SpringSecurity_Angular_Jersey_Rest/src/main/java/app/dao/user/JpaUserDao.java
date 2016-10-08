@@ -33,15 +33,14 @@ public class JpaUserDao extends JpaDao<User, Long> implements UserDao
 		if (null == user) {
 			throw new UsernameNotFoundException("The user with name " + username + " was not found");
 		}
-
 		return user;
 	}
-
 
 	@Override
 	@Transactional(readOnly = true)
 	public User findByName(String name)
 	{
+
 		final CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
 		final CriteriaQuery<User> criteriaQuery = builder.createQuery(this.entityClass);
 

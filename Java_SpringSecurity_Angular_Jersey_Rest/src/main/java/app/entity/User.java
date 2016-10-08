@@ -1,6 +1,8 @@
 package app.entity;
 
+import java.sql.Blob;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,6 +31,73 @@ public class User implements Entity, UserDetails
 	@Column(length = 80, nullable = false)
 	private String password;
 
+//	@NotNull
+	@Column(name = "full_name", nullable = true)
+	private String fullName;
+
+//	@NotNull
+	@Column(name = "last_name", nullable = true)
+	private String lastName;
+
+
+	@Column(name = "email", nullable = true)
+	private String eamil;
+
+
+	@Column(name = "status", nullable = true)
+	private int status;
+
+	@Column(name = "lang_key", nullable = true)
+	private String langKey;
+
+	@Column(name = "activation_key", nullable = true)
+	private String activationKey;
+
+	@Column(name = "reset_key", nullable = true, insertable = false, updatable = false)
+	private String resetKey;
+
+	@Column(name = "created_by", nullable = true)
+	private Integer createdBy;
+
+	@Column(name = "created_date", nullable = true)
+	private Date createdDate;
+
+	@Column(name = "reset_date", nullable = true)
+	private Date resetDate;
+
+	@Column(name = "last_modified_by", nullable = true)
+	private String lastModifiedBy;
+
+	@Column(name = "last_modified_date", nullable = true)
+	private Date lastModifiedDate;
+
+	@Column(name = "address", nullable = true)
+	private String address;
+
+	@Column(name = "request_for", nullable = true)
+	private String requestFor;
+
+	@Column(name = "gender", nullable = true)
+	private String gender;
+
+	@Column(name = "date_of_birth", nullable = true)
+	private Date dateOfBirth;
+
+	@Column(name = "phone_number", nullable = true)
+	private String phoneNumber;
+
+	@Column(name = "picture", nullable = true)
+	private Blob picture;
+
+	@Column(name = "emp_id", nullable = true)
+	private Long EmpId;
+
+	@Column(name = "role_id", nullable = true)
+	private Long RoleId;
+
+	@Column(name = "reset_key", nullable = true)
+	private Long com_ID;
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<Role>();
 
@@ -37,10 +107,179 @@ public class User implements Entity, UserDetails
 		/* Reflection instantiation */
 	}
 
-	public User(String name, String passwordHash)
+	public User(String name, String passwordHash, String myEmail)
 	{
 		this.name = name;
 		this.password = passwordHash;
+		this.eamil=myEmail;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEamil() {
+		return eamil;
+	}
+
+	public void setEamil(String eamil) {
+		this.eamil = eamil;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getLangKey() {
+		return langKey;
+	}
+
+	public void setLangKey(String langKey) {
+		this.langKey = langKey;
+	}
+
+	public String getActivationKey() {
+		return activationKey;
+	}
+
+	public void setActivationKey(String activationKey) {
+		this.activationKey = activationKey;
+	}
+
+	public String getResetKey() {
+		return resetKey;
+	}
+
+	public void setResetKey(String resetKey) {
+		this.resetKey = resetKey;
+	}
+
+	public Integer getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Integer createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getResetDate() {
+		return resetDate;
+	}
+
+	public void setResetDate(Date resetDate) {
+		this.resetDate = resetDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getRequestFor() {
+		return requestFor;
+	}
+
+	public void setRequestFor(String requestFor) {
+		this.requestFor = requestFor;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Blob getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Blob picture) {
+		this.picture = picture;
+	}
+
+	public Long getEmpId() {
+		return EmpId;
+	}
+
+	public void setEmpId(Long empId) {
+		EmpId = empId;
+	}
+
+	public Long getRoleId() {
+		return RoleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		RoleId = roleId;
+	}
+
+	public Long getCom_ID() {
+		return com_ID;
+	}
+
+	public void setCom_ID(Long com_ID) {
+		this.com_ID = com_ID;
 	}
 
 	public Long getId()
