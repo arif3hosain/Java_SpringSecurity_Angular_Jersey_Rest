@@ -101,7 +101,7 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 			delete $rootScope.user;
 			delete $rootScope.authToken;
 			$cookieStore.remove('authToken');
-			$location.path("/login");
+		/	$location.path("/login");
 		};
 		
 		 /* Try getting valid user from cookie or go to login page */
@@ -120,7 +120,6 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 	});
 
 function SignUpController($scope, $rootScope, $location, $cookieStore, UserService){
-
 	function register(){
 
 	}
@@ -153,9 +152,7 @@ function EditController($scope, $routeParams, $location, NewsService) {
 
 
 function CreateController($scope, $location, NewsService) {
-	
 	$scope.newsEntry = new NewsService();
-	
 	$scope.save = function() {
 		$scope.newsEntry.$save(function() {
 			$location.path('/');
@@ -163,9 +160,7 @@ function CreateController($scope, $location, NewsService) {
 	};
 };
 function LoginPageController($scope, $location, NewsService) {
-
 	$scope.newsEntry = new NewsService();
-
 	$scope.save = function() {
 		$scope.newsEntry.$save(function() {
 			$location.path('/');
@@ -178,9 +173,7 @@ function UserProfile($scope, UserService){
 };
 
 function SignUpController($scope, $location, NewsService) {
-
 	$scope.newsEntry = new NewsService();
-
 	$scope.save = function() {
 		$scope.newsEntry.$save(function() {
 			$location.path('/');
@@ -221,10 +214,9 @@ services.factory('UserService', function($resource) {
 					headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 				},
 			}
-		);
+	   );
 });
 
 services.factory('NewsService', function($resource) {
-	
 	return $resource('rest/news/:id', {id: '@id'});
 });

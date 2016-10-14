@@ -14,15 +14,14 @@ import javax.persistence.Column;
 import java.time.ZonedDateTime;
 
 public class AbstractAuditingEntity {
+
     @CreatedBy
-    @NotNull
-    @Column(name = "created_by", nullable = false, length = 50, updatable = false)
+    @Column(name = "created_by", nullable = true, length = 50, updatable = false)
     @JsonIgnore
     private String createdBy = "system";
 
     @CreatedDate
-    @NotNull
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date", nullable = true)
     @JsonIgnore
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
