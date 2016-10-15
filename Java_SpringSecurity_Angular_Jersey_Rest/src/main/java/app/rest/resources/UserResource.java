@@ -9,14 +9,18 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
 
+import app.dao.user.JpaUserDao;
+import app.entity.User;
 import app.rest.TokenUtils;
 import app.transfer.UserTransfer;
 import app.transfer.TokenTransfer;
 
+import com.sun.jersey.spi.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,9 +29,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Component
+@RestController
 @Path("/user")
 public class UserResource
 {
@@ -39,13 +47,17 @@ public class UserResource
 	@Qualifier("authenticationManager")
 	private AuthenticationManager authManager;
 
+
+
+	private JpaUserDao jpaUserDao=new JpaUserDao();
+
 	/**
 	 * Retrieves the currently logged in user.
 	 * 
 	 * @return A transfer containing the username and the roles.
 	 */
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
 	public UserTransfer getUser()
 	{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -68,7 +80,7 @@ public class UserResource
 	 */
 	@Path("authenticate")
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
 	public TokenTransfer authenticate(@FormParam("username") String username, @FormParam("password") String password)
 	{
 		UsernamePasswordAuthenticationToken authenticationToken =
@@ -94,6 +106,21 @@ public class UserResource
 		}
 
 		return roles;
+	}
+
+	@Path("{username}")
+	@GET
+	@Produces (MediaType.APPLICATION_JSON_VALUE)
+	private User getUser(@PathVariable String username){
+		System.out.print("we found...................");
+		System.out.print(username);
+		User user=(User)jpaUserDao.findByName(username);
+		if(user!=null){
+			System.out.print(">>>>>>>>>>>>>>>>>>>>>user: ");
+			System.out.print(user);
+			return user;
+		}
+		return null;
 	}
 
 }

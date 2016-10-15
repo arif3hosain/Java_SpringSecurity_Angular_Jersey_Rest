@@ -58,11 +58,6 @@ public class NewsEntryResource
 			viewWriter = this.mapper.writerWithView(JsonViews.User.class);
 		}
 		List<NewsEntry> allEntries = this.newsEntryDao.findAll();
-		System.out.println(">>>>>>>>>>>>");
-		System.out.println(allEntries);
-		System.out.println("<<<<<<<<<<<<<");
-
-
 		return viewWriter.writeValueAsString(allEntries);
 	}
 

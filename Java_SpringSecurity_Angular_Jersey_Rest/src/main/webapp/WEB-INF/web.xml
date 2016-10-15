@@ -41,7 +41,7 @@
 	</servlet-mapping>
 	<session-config>
 		<session-timeout>
-			100
+			1000
 		</session-timeout>
 	</session-config>
 	

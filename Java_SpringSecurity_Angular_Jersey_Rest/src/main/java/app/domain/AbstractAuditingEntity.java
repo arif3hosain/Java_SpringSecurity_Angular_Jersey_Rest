@@ -9,7 +9,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import com.fasterxml.jackson.annotation.*;
-import javax.validation.constraints.NotNull;
 import javax.persistence.Column;
 import java.time.ZonedDateTime;
 

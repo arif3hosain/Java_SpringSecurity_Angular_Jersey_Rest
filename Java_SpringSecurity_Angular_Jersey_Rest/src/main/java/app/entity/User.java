@@ -6,13 +6,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import app.domain.SetupCompany;
+import app.domain.pms.SetupEmployee;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -89,17 +87,20 @@ public class User implements Entity, UserDetails
 	@Column(name = "picture", nullable = true)
 	private Blob picture;
 
-	@Column(name = "emp_id", nullable = true)
-	private Long EmpId;
-
-	@Column(name = "role_id", nullable = true)
-	private Long RoleId;
-
 	@Column(name = "reset_key", nullable = true)
 	private Long com_ID;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<Role>();
+
+//	@ManyToOne
+//	@JoinColumn (name = "com_id",nullable = true)
+//	private SetupCompany setupCompany;
+//
+//	@ManyToOne
+//	@JoinColumn (name = "emp_id", nullable = true)
+//	private SetupEmployee setupEmployee;
+
 
 
 	protected User()
@@ -258,21 +259,7 @@ public class User implements Entity, UserDetails
 		this.picture = picture;
 	}
 
-	public Long getEmpId() {
-		return EmpId;
-	}
 
-	public void setEmpId(Long empId) {
-		EmpId = empId;
-	}
-
-	public Long getRoleId() {
-		return RoleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		RoleId = roleId;
-	}
 
 	public Long getCom_ID() {
 		return com_ID;

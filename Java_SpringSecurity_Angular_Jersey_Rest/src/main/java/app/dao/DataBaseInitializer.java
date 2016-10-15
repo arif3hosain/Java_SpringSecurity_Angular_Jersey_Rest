@@ -46,11 +46,11 @@ public class DataBaseInitializer
 //		System.out.print(">>>>>>>>>>>>>>>>>>>"+1);
 //		User userUser = new User("user", this.passwordEncoder.encode("user"), "arif3hosain@gmail.com");
 //		userUser.addRole(Role.USER);
-//
 //		this.userDao.save(userUser);
 //		System.out.print(">>>>>>>>>>>>>>>>>>>"+2);
 //
 //		User adminUser = new User("admin", this.passwordEncoder.encode("admin"), "arif3hosain@gmail.com");
+//		adminUser.addRole(Role.USER);
 //		adminUser.addRole(Role.ADMIN);
 //		this.userDao.save(adminUser);
 //

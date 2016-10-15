@@ -27,8 +27,7 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 			});
 			
 			$routeProvider.otherwise({
-				templateUrl: 'partials/user_profile.html',
-//				templateUrl: 'partials/index.html',
+				templateUrl: 'partials/index.html',
 				controller: IndexController
 			});
 			
@@ -75,7 +74,6 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 		        };
 		    }
 	    );
-		   
 		} ]
 		
 	).run(function($rootScope, $location, $cookieStore, UserService) {
@@ -86,11 +84,9 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 		});
 		
 		$rootScope.hasRole = function(role) {
-			
 			if ($rootScope.user === undefined) {
 				return false;
 			}
-			
 			if ($rootScope.user.roles[role] === undefined) {
 				return false;
 			}
@@ -101,7 +97,7 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 			delete $rootScope.user;
 			delete $rootScope.authToken;
 			$cookieStore.remove('authToken');
-		/	$location.path("/login");
+			$location.path("/login");
 		};
 		
 		 /* Try getting valid user from cookie or go to login page */
@@ -168,7 +164,14 @@ function LoginPageController($scope, $location, NewsService) {
 	};
 };
 
-function UserProfile($scope, UserService){
+function UserProfile($scope, UserService,UserInfo){
+$scope.userid='admin';
+console.log('>>>>>User profile controller.............');
+	UserInfo.query({username: $scope.userid},function(results){
+		$scope.userProfile=results;
+		console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+		console.log($scope.userProfile);
+	});
 
 };
 
@@ -215,6 +218,11 @@ services.factory('UserService', function($resource) {
 				},
 			}
 	   );
+});
+
+services.factory('UserInfo',function($resource){
+	return $resource('rest/user/:username',{},
+	{'query': { method: 'GET', isArray: true}});
 });
 
 services.factory('NewsService', function($resource) {
