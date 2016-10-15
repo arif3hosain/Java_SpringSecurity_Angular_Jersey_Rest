@@ -3,12 +3,7 @@ package app.rest.resources;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.*;
 
 import app.dao.user.JpaUserDao;
 import app.entity.User;
@@ -108,13 +103,14 @@ public class UserResource
 		return roles;
 	}
 
+
 	@Path("{username}")
 	@GET
 	@Produces (MediaType.APPLICATION_JSON_VALUE)
-	private User getUser(@PathVariable String username){
+	private User getUser(@PathParam("username") String username){
 		System.out.print("we found...................");
 		System.out.print(username);
-		User user=(User)jpaUserDao.findByName(username);
+		User user=(User)this.jpaUserDao.findByName(username);
 		if(user!=null){
 			System.out.print(">>>>>>>>>>>>>>>>>>>>>user: ");
 			System.out.print(user);

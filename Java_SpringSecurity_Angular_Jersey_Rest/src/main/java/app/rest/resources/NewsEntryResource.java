@@ -61,19 +61,19 @@ public class NewsEntryResource
 		return viewWriter.writeValueAsString(allEntries);
 	}
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("{id}")
-	public NewsEntry read(@PathParam("id") Long id)
-	{
-		this.logger.info("read(id)");
-
-		NewsEntry newsEntry = this.newsEntryDao.find(id);
-		if (newsEntry == null) {
-			throw new WebApplicationException(404);
-		}
-		return newsEntry;
-	}
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Path("{id}")
+//	public NewsEntry read(@PathParam("id") Long id)
+//	{
+//		this.logger.info("read(id)");
+//
+//		NewsEntry newsEntry = this.newsEntryDao.find(id);
+//		if (newsEntry == null) {
+//			throw new WebApplicationException(404);
+//		}
+//		return newsEntry;
+//	}
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -116,6 +116,19 @@ public class NewsEntryResource
 		UserDetails userDetails = (UserDetails) principal;
 
 		return userDetails.getAuthorities().contains(Role.ADMIN);
+	}
+
+	@Path("{id}")
+	@GET
+	@Produces(org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+	public NewsEntry getById(@PathParam("id") Long id){
+		System.out.print("we found...................: "+id);
+
+			NewsEntry newsEntry=(NewsEntry)this.newsEntryDao.find(id);
+		if(newsEntry !=null){
+			return newsEntry;
+		}
+		return null;
 	}
 
 }

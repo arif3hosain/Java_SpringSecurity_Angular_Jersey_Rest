@@ -136,9 +136,7 @@ function IndexController($scope, NewsService) {
 
 
 function EditController($scope, $routeParams, $location, NewsService) {
-
 	$scope.newsEntry = NewsService.get({id: $routeParams.id});
-	
 	$scope.save = function() {
 		$scope.newsEntry.$save(function() {
 			$location.path('/');
@@ -165,9 +163,9 @@ function LoginPageController($scope, $location, NewsService) {
 };
 
 function UserProfile($scope, UserService,UserInfo){
-$scope.userid='admin';
+$scope.newsId='admin';
 console.log('>>>>>User profile controller.............');
-	UserInfo.query({username: $scope.userid},function(results){
+	UserInfo.query({username: $scope.newsId},function(results){
 		$scope.userProfile=results;
 		console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 		console.log($scope.userProfile);
@@ -220,9 +218,8 @@ services.factory('UserService', function($resource) {
 	   );
 });
 
-services.factory('UserInfo',function($resource){
-	return $resource('rest/user/:username',{},
-	{'query': { method: 'GET', isArray: true}});
+angular.module('exampleApp').factory('UserInfo',function($resource){
+	return $resource('rest/user/:username',{},{'query': { method: 'GET', isArray: true}});
 });
 
 services.factory('NewsService', function($resource) {
